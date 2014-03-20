@@ -20,4 +20,4 @@ Run the following command in the app/Plugin folder:
 In `app/Config/bootstrap.php` add: `CakePlugin::load('CakeCAS');`
 
 ### Contributors
-This plugin was originally written by @snelg and modified by me.
+This plugin was originally written by [@snelg](https://github.com/snelg) and modified by me.
