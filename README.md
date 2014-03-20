@@ -8,7 +8,7 @@ If you want to contribute or have ideas to make this better, let me know and/or 
 ### Installation
 
 ##### Prerequisites
-Make sure to have [phpCAS](https://wiki.jasig.org/display/CASC/phpCAS) installed in the Vendor folder.  
+Make sure to have [phpCAS](https://wiki.jasig.org/display/CASC/phpCAS) installed in the app/Plugin folder.  
 Use ```Configure::write()``` to write these variables in core.php: CAS.hostname, CAS.port, CAS.uri, CAS.debug\_log\_enabled, and CAS.cert_path.
 
 ##### Git Clone
