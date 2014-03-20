@@ -18,3 +18,6 @@ Run the following command in the Vendor folder:
 ### Usage
 
 In `app/Config/bootstrap.php` add: `CakePlugin::load('CakeCAS');`
+
+### Contributors
+This plugin was originally written by @snelg and modified by me.

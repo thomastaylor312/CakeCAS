@@ -21,7 +21,7 @@ class CasAuthenticate extends BaseAuthenticate {
 		$certServer = Configure::read('CAS.cert_path');
 		if (empty($certServer)) {
 			phpCAS::setNoCasServerValidation();
-		} 
+		}
         else {
 	        phpCAS::setCasServerCACert($certServer);
 		}
@@ -53,10 +53,10 @@ class CasAuthenticate extends BaseAuthenticate {
             //        user is logged in. See Step 2.
             $current_url = Router::url(null, true);
             phpCAS::logout(array('url' => $current_url));
-        } 
+        }
         else {
             //Step 2. This will run when the CAS server has redirected the client
-            //        back to us. Do nothing in this method, then after this method
+            //        back to us. Do nothing in this block, then after this method
             //        returns CakePHP will do whatever is necessary to log the user
             //        out from its end (destroying the session or whatever).
         }
