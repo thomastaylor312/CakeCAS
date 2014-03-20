@@ -13,8 +13,8 @@ Use ```Configure::write()``` to write these variables in core.php: CAS.hostname,
 
 ##### Git Clone
 Run the following command in the Vendor folder:  
-`git clone git@github.com:thomastaylor312/CakeCAS.git Authenticate`
+`git clone git@github.com:thomastaylor312/CakeCAS.git`
 
 ### Usage
 
-In `app/Config/bootstrap.php` add: `CakePlugin::load('Authenticate')`;
+In `app/Config/bootstrap.php` add: `CakePlugin::load('CakeCAS');`
