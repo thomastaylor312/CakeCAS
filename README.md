@@ -1,7 +1,7 @@
 CakeCAS
 =======
 
-This is a simple Plugin for making phpCAS work with CakePHP. Just put this file in the Controller/Component/Auth/ folder and anywhere you are using the Auth component you can use ```$this->Auth->authenticate = array('CakeCAS.Cas');```
+This is a simple plugin for making phpCAS work with CakePHP. Just put this file in the Controller/Component/Auth/ folder and anywhere you are using the Auth component you can use ```$this->Auth->authenticate = array('CakeCAS.Cas');```
 
 If you want to contribute or have ideas to make this better, let me know and/or submit a pull request.
 
@@ -20,4 +20,4 @@ Run the following command in the app/Plugin folder:
 In `app/Config/bootstrap.php` add: `CakePlugin::load('CakeCAS');`
 
 ### Contributors
-This plugin was originally written by [@snelg](https://github.com/snelg) and modified by me.
+This plugin was also written by [@snelg](https://github.com/snelg).
