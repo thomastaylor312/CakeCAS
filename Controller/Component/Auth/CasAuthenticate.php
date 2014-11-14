@@ -14,31 +14,36 @@ class CasAuthenticate extends BaseAuthenticate {
         }
 
         phpCAS::client(CAS_VERSION_2_0,
-           Configure::read('CAS.hostname'),
-           Configure::read('CAS.port'),
-           Configure::read('CAS.uri'));
+                       Configure::read('CAS.hostname'),
+                       Configure::read('CAS.port'),
+                       Configure::read('CAS.uri'));
 
-		$certServer = Configure::read('CAS.cert_path');
-		if (empty($certServer)) {
-			phpCAS::setNoCasServerValidation();
-		}
-        else {
-	        phpCAS::setCasServerCACert($certServer);
-		}
+        $certServer = Configure::read('CAS.cert_path');
+        if (empty($certServer)) {
+            phpCAS::setNoCasServerValidation();
+        } else {
+            phpCAS::setCasServerCACert($certServer);
+        }
     }
 
     public function authenticate(CakeRequest $request, CakeResponse $response) {
-		phpCAS::handleLogoutRequests(false);
+        phpCAS::handleLogoutRequests(false);
         phpCAS::forceAuthentication();
         return array_merge(array('username' => phpCAS::getUser()), phpCAS::getAttributes());
     }
 
     public function unauthenticated(CakeRequest $request, CakeResponse $response) {
-        $this->authenticate($request, $response);
-    }
-
-    public function getUser(CakeRequest $request) {
-        return FALSE;
+        //Call Auth->login() to set default auth session variables
+        if (!empty($this->_Collection)) {
+            $controller = $this->_Collection->getController();
+            if (!empty($controller->Auth)) {
+                $login = $controller->Auth->login(); //This will eventually call back in to $this->authenticate above, thus triggering CAS as needed
+                if (!empty($login)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public function logout($user) {
@@ -53,8 +58,7 @@ class CasAuthenticate extends BaseAuthenticate {
             //        user is logged in. See Step 2.
             $current_url = Router::url(null, true);
             phpCAS::logout(array('url' => $current_url));
-        }
-        else {
+        } else {
             //Step 2. This will run when the CAS server has redirected the client
             //        back to us. Do nothing in this block, then after this method
             //        returns CakePHP will do whatever is necessary to log the user
